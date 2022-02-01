@@ -5,7 +5,8 @@ import LoginPage from './Routes/LoginPage';
 import RegisterPage from './Routes/RegisterPage';
 import ProductInfo from './Routes/ProductInfo';
 import CartPage from './Routes/CartPage';
- 
+
+import './stylesheets/layout.css';
 
 function App() {
   return (

@@ -1,0 +1,30 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+.navbar {
+  background-color: rgba(191, 139, 228, 0.838) !important;
+}
+.navbar-brand {
+  color: white !important;
+  font-weight: bold !important;
+}
+.nav-link {
+  color: white !important;
+}
+.content {
+    padding-top: 80px;
+}
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(219, 196, 235, 0.612);
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
