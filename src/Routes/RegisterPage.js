@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function RegisterPage() {
   const [email, setEmail] = useState('')
@@ -35,6 +36,11 @@ function RegisterPage() {
             <input type='text' className='form-control' placeholder='confirm password' value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}}/>
 
             <button className='my-3'> register</button>
+
+            <hr />
+
+            <Link to='/login'>Click here to login</Link>
+
 
           </div>
 
