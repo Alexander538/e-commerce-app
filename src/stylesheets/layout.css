@@ -6,7 +6,7 @@
   z-index: 2;
 }
 .navbar {
-  background-color: rgba(191, 139, 228, 0.838) !important;
+  background-color: rgba(191, 139, 228, 0.94) !important;
 }
 .navbar-brand {
   color: white !important;
@@ -29,7 +29,7 @@
   right: 0;
 }
 button {
-  background-color: rgba(191, 139, 228, 0.838);
+  background-color: rgba(191, 139, 228, 0.94);
   box-shadow: none;
   border: 1px solid rgba(255, 255, 255, 0.541);
   color:white;
@@ -38,4 +38,14 @@ button {
 }
 button:hover{
   background-color: violet;
+}
+.loader{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.spinner-border{
+  height: 100px;
+  width: 100px;
 }

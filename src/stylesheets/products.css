@@ -1,12 +1,11 @@
 .product{
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-}
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;}
 .product p{
     min-height: 2rem;
 }
 .product-img{
     height: 200px;
-    width: 150px;
+    width: 250px;
 }
 .product:hover .product-actions{
     opacity: 1;
@@ -28,6 +27,17 @@
     font-weight: bold !important;
 }
 .product-info-img{
-    height: 50vh;
-    width: 60vw;
+    height: 40vh;
+    width: 50vw;
+}
+.total-amount {
+    background-color: rgb(253, 165, 233);
+    padding: 10px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    font-weight: bold;
+    color:white;
+}
+.total-amount:hover{
+    background-color: rgba(191, 139, 228, 0.94);
 }

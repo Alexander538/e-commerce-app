@@ -5,10 +5,12 @@ import fireDB from '../fireConfig';
 import { hatProducts } from '../data/hatProducts';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaTruckLoading } from 'react-icons/fa';
 
 function Home() {
   const [products, setProducts] = useState([]);
   const { cartItems } = useSelector(state => state.cartReducer);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,6 +20,7 @@ function Home() {
 
   async function getData() {
     try {
+      setLoading(true);
       const products = await getDocs(collection(fireDB, 'products'));
       const productsArray = [];
       products.forEach((doc) => {
@@ -27,11 +30,13 @@ function Home() {
         };
 
         productsArray.push(obj);
+        setLoading(false);
       });
 
       setProducts(productsArray);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }
 
@@ -54,12 +59,12 @@ function Home() {
   };
 
   return (
-    <Layout>
+    <Layout loading={loading}>
       <div className='container'>
         <div className='row'>
           {products.map((product) => {
             return (
-              <div className='col-md-4'>
+              <div className='col-md-6'>
                 <div className='m-2 p-1 product position-relative'>
                   <div className='product-content'>
                     <p>{product.name}</p>
