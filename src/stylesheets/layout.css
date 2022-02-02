@@ -28,3 +28,14 @@
   left: 0;
   right: 0;
 }
+button {
+  background-color: rgba(191, 139, 228, 0.838);
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.541);
+  color:white;
+  padding: 5px;
+  font-weight: bold !important;
+}
+button:hover{
+  background-color: violet;
+}

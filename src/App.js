@@ -7,6 +7,8 @@ import ProductInfo from './Routes/ProductInfo';
 import CartPage from './Routes/CartPage';
 
 import './stylesheets/layout.css';
+import './stylesheets/products.css';
+
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
           <Route path='/' exact element={<Home />} />
           <Route path='/login' exact element={<LoginPage />} />
           <Route path='/register' exact element={<RegisterPage />} />
-          <Route path='/productinfo' exact element={<ProductInfo />} />
+          <Route path='/productinfo/:productid' exact element={<ProductInfo />} />
           <Route path='/cart' exact element={<CartPage />} />
 
 
