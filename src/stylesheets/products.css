@@ -26,9 +26,10 @@
     color: white;
     font-weight: bold !important;
 }
-.product-info-img{
-    height: 40vh;
-    width: 50vw;
+/* need to make product info image responsive to mobile */
+.product-info-img{ 
+    height: 25vh;
+    width: 40vw;
 }
 .total-amount {
     background-color: rgb(253, 165, 233);
