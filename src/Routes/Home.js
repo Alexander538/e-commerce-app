@@ -5,7 +5,6 @@ import fireDB from '../fireConfig';
 import { hatProducts } from '../data/hatProducts';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaTruckLoading } from 'react-icons/fa';
 
 function Home() {
   const [products, setProducts] = useState([]);
