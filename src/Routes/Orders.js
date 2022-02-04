@@ -6,6 +6,7 @@ import fireDB from '../fireConfig';
 function Orders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const userid = JSON.parse(localStorage.getItem('currentUser')).user.uid
 
   useEffect(() => {
     getData();
@@ -31,7 +32,7 @@ function Orders() {
   return (
     <Layout loading={loading}>
         <div className='p-2'>
-        {orders.map((order) => {
+        {orders.filter(obj=>obj.userid == userid).map((order) => {
         return (
           <table className='table mt-3 order'>
             <thead>

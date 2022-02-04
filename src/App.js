@@ -6,6 +6,7 @@ import RegisterPage from './Routes/RegisterPage';
 import ProductInfo from './Routes/ProductInfo';
 import CartPage from './Routes/CartPage';
 import Orders from './Routes/Orders';
+import Admin from './Routes/Admin';
 import { ToastContainer } from 'react-toastify';
 
 import './stylesheets/layout.css';
@@ -53,6 +54,15 @@ function App() {
             element={
               <ProtectedRoutes>
                 <Orders />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path='/admin'
+            exact
+            element={
+              <ProtectedRoutes>
+                <Admin />
               </ProtectedRoutes>
             }
           />

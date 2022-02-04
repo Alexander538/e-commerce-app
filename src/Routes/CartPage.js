@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import Layout from '../Components/Layout';
