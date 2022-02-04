@@ -8,8 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Home() {
   const [products, setProducts] = useState([]);
-  const { cartItems } = useSelector(state => state.cartReducer);
+  const { cartItems } = useSelector((state) => state.cartReducer);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -50,7 +52,7 @@ function Home() {
   // }
 
   useEffect(() => {
-    localStorage.setItem('cartItems' , JSON.stringify(cartItems));
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addToCart = (product) => {
@@ -60,40 +62,69 @@ function Home() {
   return (
     <Layout loading={loading}>
       <div className='container'>
+        <div className='d-flex w-50 align-items-center my-3 justify-content-center'>
+          <input
+            type='text'
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+            className='form-control mx-2'
+            placeholder='search hats'
+          />
+          <select
+            className='form-control mt-3'
+            value={filter}
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
+          >
+            <option value='winter'>Winter Collection</option>
+            <option value='spring'>Spring Collection</option>
+            <option value='summer'>Summer Collection</option>
+            <option value='fall'>Fall Collection</option>
+          </select>
+        </div>
         <div className='row'>
-          {products.map((product) => {
-            return (
-              <div className='col-md-6'>
-                <div className='m-2 p-1 product position-relative'>
-                  <div className='product-content'>
-                    <p>{product.name}</p>
-                    <div className='text-center'>
-                      <img
-                        src={product.imageURL}
-                        alt=''
-                        className='product-img'
-                      />
+          {products
+            .filter((obj) => obj.name.toLowerCase().includes(searchTerm))
+            .filter((obj) => obj.category.toLowerCase().includes(filter))
+            .map((product) => {
+              return (
+                <div className='col-md-6'>
+                  <div className='m-2 p-1 product position-relative'>
+                    <div className='product-content'>
+                      <p>{product.name}</p>
+                      <div className='text-center'>
+                        <img
+                          src={product.imageURL}
+                          alt=''
+                          className='product-img'
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className='product-actions'>
-                    <h2>$ {product.price}</h2>
-                    <div className='d-flex'>
-                      <button className='mx-2' onClick={() => addToCart(product)}>
-                        add to cart
-                      </button>
-                      <button
-                        onClick={() => {
-                          navigate(`/productinfo/${product.id}`);
-                        }}
-                      >
-                        view
-                      </button>
+                    <div className='product-actions'>
+                      <h2>$ {product.price}</h2>
+                      <div className='d-flex'>
+                        <button
+                          className='mx-2'
+                          onClick={() => addToCart(product)}
+                        >
+                          add to cart
+                        </button>
+                        <button
+                          onClick={() => {
+                            navigate(`/productinfo/${product.id}`);
+                          }}
+                        >
+                          view
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </Layout>

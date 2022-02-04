@@ -5,6 +5,7 @@ import LoginPage from './Routes/LoginPage';
 import RegisterPage from './Routes/RegisterPage';
 import ProductInfo from './Routes/ProductInfo';
 import CartPage from './Routes/CartPage';
+import Orders from './Routes/Orders';
 import { ToastContainer } from 'react-toastify';
 
 import './stylesheets/layout.css';
@@ -43,6 +44,15 @@ function App() {
             element={
               <ProtectedRoutes>
                 <CartPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path='/orders'
+            exact
+            element={
+              <ProtectedRoutes>
+                <Orders />
               </ProtectedRoutes>
             }
           />
