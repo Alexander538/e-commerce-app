@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Tabs, Tab } from 'react-bootstrap';
 import Layout from '../Components/Layout';
 import {
   collection,
@@ -28,6 +28,7 @@ function Admin() {
   const [add, setAdd] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     getData();
@@ -49,6 +50,27 @@ function Admin() {
       });
 
       setProducts(productsArray);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getOrdersData();
+  }, []);
+
+  async function getOrdersData() {
+    try {
+      setLoading(true);
+      const result = await getDocs(collection(fireDB, 'orders'));
+      const ordersArray = [];
+      result.forEach((doc) => {
+        ordersArray.push(doc.data());
+        setLoading(false);
+      });
+      console.log(ordersArray);
+      setOrders(ordersArray);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -104,106 +126,146 @@ function Admin() {
   };
   return (
     <Layout loading={loading}>
-      <div className='d-flex justify-content-between'>
-        <h3>Products List</h3>
-        <button onClick={addHandler}>Add Product</button>
-      </div>
-      <table className='table mt-3'>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((item) => {
-            return (
+      <Tabs
+        defaultActiveKey='profile'
+        id='uncontrolled-tab-example'
+        className='mb-3'
+      >
+        <Tab eventKey='products' title='Products'>
+          <div className='d-flex justify-content-between'>
+            <h3>Products List</h3>
+            <button onClick={addHandler}>Add Product</button>
+          </div>
+          <table className='table mt-3'>
+            <thead>
               <tr>
-                <td>
-                  <img src={item.imageURL} height='80' width='80' />
-                </td>
-
-                <td>{item.name}</td>
-                <td>{item.category}</td>
-                <td>$ {item.price}</td>
-
-                <td>
-                  <FaTrash
-                    color='red'
-                    size={20}
-                    onClick={() => deleteProduct(item)}
-                  />
-
-                  <FaEdit
-                    onClick={() => editHandler(item)}
-                    color='blue'
-                    size={20}
-                  />
-                </td>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Action</th>
               </tr>
+            </thead>
+            <tbody>
+              {products.map((item) => {
+                return (
+                  <tr>
+                    <td>
+                      <img src={item.imageURL} height='80' width='80' />
+                    </td>
+
+                    <td>{item.name}</td>
+                    <td>{item.category}</td>
+                    <td>$ {item.price}</td>
+
+                    <td>
+                      <FaTrash
+                        color='red'
+                        size={20}
+                        onClick={() => deleteProduct(item)}
+                      />
+
+                      <FaEdit
+                        onClick={() => editHandler(item)}
+                        color='blue'
+                        size={20}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>{add ? 'ADD' : 'EDIT'}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {' '}
+              <div className='register-form'>
+                <h2>Product Info:</h2>
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='name'
+                  value={product.name}
+                  onChange={(e) =>
+                    setProduct({ ...product, name: e.target.value })
+                  }
+                />
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='image url'
+                  value={product.imageURL}
+                  onChange={(e) =>
+                    setProduct({ ...product, imageURL: e.target.value })
+                  }
+                />
+                <input
+                  type='number'
+                  className='form-control'
+                  placeholder='product price'
+                  value={product.price}
+                  onChange={(e) =>
+                    setProduct({ ...product, price: e.target.value })
+                  }
+                />
+                <input
+                  type='text'
+                  className='form-control'
+                  placeholder='category'
+                  value={product.category}
+                  onChange={(e) =>
+                    setProduct({ ...product, category: e.target.value })
+                  }
+                />
+
+                <hr />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <button onClick={handleClose}>Close</button>
+              {add ? (
+                <button onClick={addProduct}>SAVE</button>
+              ) : (
+                <button onClick={updateProduct}>SAVE</button>
+              )}
+            </Modal.Footer>
+          </Modal>
+        </Tab>
+        <Tab eventKey='orders' title='Orders'>
+          {orders.map((order) => {
+            return (
+              <table className='table mt-3 order'>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {order.cartItems.map((item) => {
+                    return (
+                      <tr>
+                        <td>
+                          <img src={item.imageURL} height='80' width='80' />
+                        </td>
+
+                        <td>{item.name}</td>
+                        <td>$ {item.price}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             );
           })}
-        </tbody>
-      </table>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{add ? 'ADD' : 'EDIT'}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {' '}
-          <div className='register-form'>
-            <h2>Product Info:</h2>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='name'
-              value={product.name}
-              onChange={(e) => setProduct({ ...product, name: e.target.value })}
-            />
-            <input
-              type='text'
-              className='form-control'
-              placeholder='image url'
-              value={product.imageURL}
-              onChange={(e) =>
-                setProduct({ ...product, imageURL: e.target.value })
-              }
-            />
-            <input
-              type='number'
-              className='form-control'
-              placeholder='product price'
-              value={product.price}
-              onChange={(e) =>
-                setProduct({ ...product, price: e.target.value })
-              }
-            />
-            <input
-              type='text'
-              className='form-control'
-              placeholder='category'
-              value={product.category}
-              onChange={(e) =>
-                setProduct({ ...product, category: e.target.value })
-              }
-            />
-
-            <hr />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <button onClick={handleClose}>Close</button>
-          {add ? (
-            <button onClick={addProduct}>SAVE</button>
-          ) : (
-            <button onClick={updateProduct}>SAVE</button>
-          )}
-        </Modal.Footer>
-      </Modal>
+        </Tab>
+        <Tab eventKey='contact' title='Contact' disabled></Tab>
+      </Tabs>
     </Layout>
   );
 }
