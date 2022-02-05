@@ -108,7 +108,7 @@ function CartPage() {
         <Modal.Body>
           {' '}
           <div className='register-form'>
-            <h2>Register</h2>
+            <h2>Shipping Info:</h2>
 
             <hr />
 

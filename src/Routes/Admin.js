@@ -176,7 +176,7 @@ function Admin() {
             <input
               type='number'
               className='form-control'
-              placeholder='product.price'
+              placeholder='product price'
               value={product.price}
               onChange={(e) =>
                 setProduct({ ...product, price: e.target.value })
