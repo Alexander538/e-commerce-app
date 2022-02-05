@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {FaBars, FaCartPlus} from 'react-icons/fa'
+import {FaBars, FaCartPlus, FaUser} from 'react-icons/fa'
 import { useSelector } from 'react-redux';
 
 function Header() {
@@ -37,7 +37,7 @@ function Header() {
             <ul className='navbar-nav ms-auto'>
               <li className='nav-item'>
                 <Link className='nav-link active' aria-current='page' to='/'>
-                  {user.email.substring(0 , user.email.length-10)}
+                  <FaUser/>  {user.email.substring(0 , user.email.length-10)}
                 </Link>
               </li>
               <li className='nav-item'>

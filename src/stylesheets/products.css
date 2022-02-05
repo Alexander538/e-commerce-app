@@ -43,5 +43,7 @@
     background-color: rgba(191, 139, 228, 0.94);
 }
 .order {
-    background-color: rgba(219, 196, 235, 0.612);
+    /* background-color: rgba(219, 196, 235, 0.612); */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }

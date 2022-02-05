@@ -4,6 +4,7 @@ import fireDB from '../fireConfig';
 import Layout from '../Components/Layout';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 
 function ProductInfo() {
@@ -35,6 +36,7 @@ function ProductInfo() {
   }
   const addToCart = (product) => {
     dispatch({ type: 'ADD_TO_CART', payload: product });
+    toast.success("Added to cart!")
   };
   return (
     <Layout loading={loading}>

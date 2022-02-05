@@ -5,6 +5,7 @@ import fireDB from '../fireConfig';
 import { hatProducts } from '../data/hatProducts';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -57,6 +58,7 @@ function Home() {
 
   const addToCart = (product) => {
     dispatch({ type: 'ADD_TO_CART', payload: product });
+    toast.success("Added to cart!")
   };
 
   return (

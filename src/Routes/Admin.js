@@ -127,7 +127,7 @@ function Admin() {
   return (
     <Layout loading={loading}>
       <Tabs
-        defaultActiveKey='profile'
+        defaultActiveKey='products'
         id='uncontrolled-tab-example'
         className='mb-3'
       >
@@ -264,7 +264,7 @@ function Admin() {
             );
           })}
         </Tab>
-        <Tab eventKey='contact' title='Contact' disabled></Tab>
+        <Tab eventKey='users' title='Users' disabled></Tab>
       </Tabs>
     </Layout>
   );
