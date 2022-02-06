@@ -22,9 +22,10 @@ function RegisterPage() {
       console.log(result);
       setLoading(false);
       toast.success('Registration Success!');
-      setEmail('')
-      setPassword('')
-      setConfirmPassword('')
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      window.location.href = '/login';
     } catch (error) {
       toast.error('Registration Failed');
       setLoading(false);
