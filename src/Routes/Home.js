@@ -81,6 +81,7 @@ function Home() {
               setFilter(e.target.value);
             }}
           >
+            <option value=''>Show All</option>
             <option value='winter'>Winter Collection</option>
             <option value='spring'>Spring Collection</option>
             <option value='summer'>Summer Collection</option>
