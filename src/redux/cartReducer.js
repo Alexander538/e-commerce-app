@@ -15,7 +15,7 @@ export const cartReducer = (state=initialState , action)=>{
         case 'DELETE_FROM_CART' : {
             return{
                 ...state ,
-                cartItems : state.cartItems.filter(obj=>obj.id !== action.payload.id)
+                cartItems : state.cartItems.filter(products=>products.keyId !== action.payload.keyId)
                 //if client selects duplicate of same item, this will delete all the items at once...
             }
         }
