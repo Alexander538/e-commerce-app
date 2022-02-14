@@ -13,7 +13,7 @@ import {
   decreaseCart,
   getTotals,
   removeFromCart,
-} from '../slices/cartSlice';
+} from '../redux/cartSlice';
 
 function CartPage() {
   // const { cartItems } = useSelector((state) => state.cartReducer);

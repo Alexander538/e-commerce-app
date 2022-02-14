@@ -5,7 +5,7 @@ import Layout from '../Components/Layout';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { addToCart, getTotals } from '../slices/cartSlice';
+import { addToCart, getTotals } from '../redux/cartSlice';
 
 function ProductInfo() {
   const [product, setProduct] = useState();
