@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { getDoc, doc } from 'firebase/firestore';
-import fireDB from '../fireConfig';
-import Layout from '../Components/Layout';
-import { useParams } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import { useNavigate, useParams } from 'react-router-dom';
+import Layout from '../Components/Layout';
+import fireDB from '../fireConfig';
 import { addToCart, getTotals } from '../redux/cartSlice';
 
 function ProductInfo() {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const cart = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
@@ -41,6 +43,7 @@ function ProductInfo() {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
+
   return (
     <Layout loading={loading}>
       <div className='container'>
@@ -56,6 +59,12 @@ function ProductInfo() {
                 <p>{product.description}</p>
                 <div className='d-flex justify-content-end my-3'>
                   {' '}
+                  <button
+                    style={{ marginRight: 10 }}
+                    onClick={() => navigate('/')}
+                  >
+                    <FaArrowAltCircleLeft /> back
+                  </button>
                   <button onClick={() => handleAddToCart(product)}>
                     add to cart
                   </button>

@@ -70,7 +70,7 @@ function Home() {
             type='text'
             value={searchTerm}
             onChange={(e) => {
-              setSearchTerm(e.target.value);
+              setSearchTerm(e.target.value.toLowerCase());
             }}
             className='form-control mx-2'
             placeholder='search hats'
