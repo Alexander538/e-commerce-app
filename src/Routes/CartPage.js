@@ -7,9 +7,20 @@ import { addDoc, collection } from 'firebase/firestore';
 import fireDB from '../fireConfig';
 import { toast } from 'react-toastify';
 
+import {
+  addToCart,
+  clearCart,
+  decreaseCart,
+  getTotals,
+  removeFromCart,
+} from '../slices/cartSlice';
+
 function CartPage() {
-  const { cartItems } = useSelector((state) => state.cartReducer);
-  const [total, setTotal] = useState(0);
+  // const { cartItems } = useSelector((state) => state.cartReducer);
+
+  const cart = useSelector((state) => state.cart);
+
+  // const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -22,20 +33,38 @@ function CartPage() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    let temp = 0;
-    cartItems.forEach((cartItem) => {
-      temp = temp + cartItem.price;
-    });
-    setTotal(temp);
-  }, [cartItems]);
+  // useEffect(() => {
+  //   let temp = 0;
+  //   cartItems.forEach((cartItem) => {
+  //     temp = temp + cartItem.price;
+  //   });
+  //   setTotal(temp);
+  // }, [cartItems]);
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
-  const deleteFromCart = (product) => {
-    dispatch({ type: 'DELETE_FROM_CART', payload: product });
+    localStorage.setItem('cartItems', JSON.stringify(cart.cartItems));
+  }, [cart.cartItems]);
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
+
+  // const deleteFromCart = (product) => {
+  //   dispatch({ type: 'DELETE_FROM_CART', payload: product });
+  // };
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
   };
+  const handleDecreaseCart = (product) => {
+    dispatch(decreaseCart(product));
+  };
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
   const placeOrder = async () => {
     const addressInfo = {
       name,
@@ -46,7 +75,7 @@ function CartPage() {
     console.log(addressInfo);
 
     const orderInfo = {
-      cartItems,
+      cart,
       addressInfo,
       email: JSON.parse(localStorage.getItem('currentUser')).user.email,
       userid: JSON.parse(localStorage.getItem('currentUser')).user.uid,
@@ -72,11 +101,12 @@ function CartPage() {
             <th>Image</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {cartItems.map((item) => {
+          {cart.cartItems.map((item) => {
             return (
               <tr>
                 <td>
@@ -85,8 +115,9 @@ function CartPage() {
 
                 <td>{item.name}</td>
                 <td>$ {item.price}</td>
+                <td>{item.cartQuantity}</td>
                 <td>
-                  <FaTrash onClick={() => deleteFromCart(item)} />
+                  <FaTrash onClick={() => handleDecreaseCart(item)} />
                 </td>
               </tr>
             );
@@ -95,7 +126,7 @@ function CartPage() {
       </table>
 
       <div className='d-flex justify-content-end '>
-        <h1 className='total-amount'>cart total: $ {total}</h1>
+        <h1 className='total-amount'>cart total: $ {cart.cartTotalAmount}</h1>
       </div>
       <div className='d-flex justify-content-end mt-3'>
         <button onClick={handleShow}>place order</button>

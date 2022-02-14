@@ -5,13 +5,14 @@ import Layout from '../Components/Layout';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-
+import { addToCart, getTotals } from '../slices/cartSlice';
 
 function ProductInfo() {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
+  const dispatch = useDispatch();
 
   const params = useParams();
 
@@ -19,7 +20,10 @@ function ProductInfo() {
     getData();
   }, []);
 
-  
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
+
   async function getData() {
     try {
       setLoading(true);
@@ -34,9 +38,8 @@ function ProductInfo() {
       setLoading(false);
     }
   }
-  const addToCart = (product) => {
-    dispatch({ type: 'ADD_TO_CART', payload: product });
-    toast.success("Added to cart!")
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
   };
   return (
     <Layout loading={loading}>
@@ -53,7 +56,9 @@ function ProductInfo() {
                 <p>{product.description}</p>
                 <div className='d-flex justify-content-end my-3'>
                   {' '}
-                  <button onClick={() => addToCart(product)}>add to cart</button>
+                  <button onClick={() => handleAddToCart(product)}>
+                    add to cart
+                  </button>
                 </div>
               </div>
             )}

@@ -1,10 +1,25 @@
-import { createStore } from 'redux';
-import rootReducer from './rootReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import cartReducer from '../slices/cartSlice';
+// import { createStore } from 'redux';
+// import { cartReducer } from './cartReducer';
+// import rootReducer from './rootReducer';
 
-const initialStore = {
-  cartReducer: {
-    cartItems: JSON.parse(localStorage.getItem('cartItems')) ?? [],
-  },
-};
+// const initialStore = {
+//   cartReducer: {
+//     cartItems: JSON.parse(localStorage.getItem('cartItems')) ?? [],
+//   },
+// };
 
-export const store = createStore(rootReducer, initialStore);
+// export const store = createStore(rootReducer, initialStore);
+
+
+
+
+const store = configureStore({
+  reducer: {
+    cart: cartReducer,
+    
+  }
+})
+
+export default store;

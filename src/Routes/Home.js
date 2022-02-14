@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../Components/Layout';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import fireDB from '../fireConfig';
-import { hatProducts } from '../data/hatProducts';
+// import { hatProducts } from '../data/hatProducts';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
+import { addToCart, getTotals } from '../slices/cartSlice';
+
 function Home() {
   const [products, setProducts] = useState([]);
-  const { cartItems } = useSelector((state) => state.cartReducer);
+  // const { cartItems } = useSelector((state) => state.cartReducer);
+  const cart = useSelector((state) => state.cart);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('');
@@ -19,6 +22,10 @@ function Home() {
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cart, dispatch]);
 
   async function getData() {
     try {
@@ -42,24 +49,18 @@ function Home() {
     }
   }
 
-  // function addProductsData() {
-  //   hatProducts.map(async (product) => {
-  //     try {
-  //       await addDoc(collection(fireDB, 'products'), product);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   });
-  // }
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
+    localStorage.setItem('cartItems', JSON.stringify(cart.cartItems));
+  }, [cart.cartItems]);
 
-  const addToCart = (product) => {
-    dispatch({ type: 'ADD_TO_CART', payload: product });
-    toast.success("Added to cart!")
-  };
+  // const addToCart = (product) => {
+  //   dispatch({ type: 'ADD_TO_CART', payload: product });
+  //   toast.success("Added to cart!")
+  // };
 
   return (
     <Layout loading={loading}>
@@ -111,7 +112,7 @@ function Home() {
                       <div className='d-flex'>
                         <button
                           className='mx-2'
-                          onClick={() => addToCart(product)}
+                          onClick={() => handleAddToCart(product)}
                         >
                           add to cart
                         </button>

@@ -4,8 +4,8 @@ import {FaBars, FaCartPlus, FaUser} from 'react-icons/fa'
 import { useSelector } from 'react-redux';
 
 function Header() {
-
-  const { cartItems } = useSelector(state=>state.cartReducer)
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  // const { cartItems } = useSelector(state=>state.cartReducer)
   const { user } = JSON.parse(localStorage.getItem('currentUser'))
 
   const logout =()=> {
@@ -52,7 +52,8 @@ function Header() {
               </li>
               <li className='nav-item'>
                 <Link className='nav-link' to='/cart'>
-                  <FaCartPlus /> {cartItems.length}
+                  <FaCartPlus /> {cartTotalQuantity}
+                   {/* {cartItems.length} */}
                 </Link>
               </li>
             </ul>
