@@ -19,7 +19,7 @@ function CartPage() {
   // const { cartItems } = useSelector((state) => state.cartReducer);
 
   const cart = useSelector((state) => state.cart);
-
+  const cartItems = cart.cartItems
   // const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -75,7 +75,7 @@ function CartPage() {
     console.log(addressInfo);
 
     const orderInfo = {
-      cart,
+      cartItems,
       addressInfo,
       email: JSON.parse(localStorage.getItem('currentUser')).user.email,
       userid: JSON.parse(localStorage.getItem('currentUser')).user.uid,

@@ -39,11 +39,12 @@ function Orders() {
               <tr>
                 <th>Image</th>
                 <th>Name</th>
+                <th>Quantity</th>
                 <th>Price</th>
               </tr>
             </thead>
             <tbody>
-              {order.cartItems.map((item) => {
+              {order.cartItems?.map((item) => {
                 return (
                   <tr>
                     <td>
@@ -51,6 +52,7 @@ function Orders() {
                     </td>
 
                     <td>{item.name}</td>
+                    <td>{item.cartQuantity}</td>
                     <td>$ {item.price}</td>
                   </tr>
                 );
