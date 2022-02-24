@@ -130,7 +130,9 @@ function CartPage() {
         <h1 className='total-amount'>cart total: $ {cart.cartTotalAmount}</h1>
       </div>
       <div className='d-flex justify-content-end mt-3'>
-        <button onClick={handleClearCart}>clear cart</button>
+        <button style={{ marginRight: '5px' }} onClick={handleClearCart}>
+          clear cart
+        </button>
         <button onClick={handleShow}>place order</button>
       </div>
 

@@ -1,51 +1,61 @@
-.product{
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;}
-.product p{
-    min-height: 2rem;
+.product {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
-.product-img{
-    height: 200px;
-    width: 250px;
+.product p {
+  min-height: 2rem;
 }
-.product:hover .product-actions{
-    opacity: 1;
+.product-img {
+  height: 200px;
+  width: 250px;
+}
+.product:hover .product-actions {
+  opacity: 1;
 }
 
-.product-actions{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top:0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.797);
-    color: white;
-    font-weight: bold !important;
+.product-actions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.797);
+  color: white;
+  font-weight: bold !important;
 }
 /* need to make product info image responsive to mobile */
-.product-info-img{ 
-    height: 30vh;
+.product-info-img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  /* height: 30vh;
     width: 40vw;
     max-width: 600px;
-    min-width: 300px;
+    min-width: 300px; */
 }
 .total-amount {
-    background-color: rgb(253, 165, 233);
-    padding: 10px;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    font-weight: bold;
-    color:white;
+  background-color: rgb(253, 165, 233);
+  padding: 10px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  font-weight: bold;
+  color: white;
 }
-.total-amount:hover{
-    background-color: rgba(191, 139, 228, 0.94);
+.total-amount:hover {
+  background-color: rgba(191, 139, 228, 0.94);
 }
 .order {
-    /* background-color: rgba(219, 196, 235, 0.612); */
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  /* background-color: rgba(219, 196, 235, 0.612); */
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }

@@ -50,17 +50,17 @@ function ProductInfo() {
         <div className='row justify-content-center'>
           <div className='col-md-8'>
             {product && (
-              <div>
+              <div className='justify-content-center'>
                 <p>
                   <b>{product.name}</b>
                 </p>
-                <img src={product.imageURL} className='product-info-img' />
+                <img className='product-info-img' src={product.imageURL} />
                 <hr />
                 <p>{product.description}</p>
                 <div className='d-flex justify-content-end my-3'>
                   {' '}
                   <button
-                    style={{ marginRight: 10 }}
+                    style={{ marginRight: '5px' }}
                     onClick={() => navigate('/')}
                   >
                     <FaArrowAltCircleLeft /> back
