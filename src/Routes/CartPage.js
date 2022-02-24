@@ -19,7 +19,7 @@ function CartPage() {
   // const { cartItems } = useSelector((state) => state.cartReducer);
 
   const cart = useSelector((state) => state.cart);
-  const cartItems = cart.cartItems
+  const cartItems = cart.cartItems;
   // const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -87,6 +87,7 @@ function CartPage() {
       setLoading(false);
       toast.success('Order placed successfully');
       handleClose();
+      handleClearCart();
     } catch (error) {
       setLoading(false);
       toast.error('Order failed');
@@ -129,6 +130,7 @@ function CartPage() {
         <h1 className='total-amount'>cart total: $ {cart.cartTotalAmount}</h1>
       </div>
       <div className='d-flex justify-content-end mt-3'>
+        <button onClick={handleClearCart}>clear cart</button>
         <button onClick={handleShow}>place order</button>
       </div>
 
