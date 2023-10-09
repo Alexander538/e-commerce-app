@@ -12,10 +12,10 @@ import {
   clearCart,
   decreaseCart,
   getTotals,
-  removeFromCart,
+  removeFromCart
 } from '../redux/cartSlice';
 
-function CartPage() {
+function CartPage () {
   // const { cartItems } = useSelector((state) => state.cartReducer);
 
   const cart = useSelector((state) => state.cart);
@@ -70,7 +70,7 @@ function CartPage() {
       name,
       address,
       zipCode,
-      phoneNumber,
+      phoneNumber
     };
     console.log(addressInfo);
 
@@ -78,7 +78,7 @@ function CartPage() {
       cartItems,
       addressInfo,
       email: JSON.parse(localStorage.getItem('currentUser')).user.email,
-      userid: JSON.parse(localStorage.getItem('currentUser')).user.uid,
+      userid: JSON.parse(localStorage.getItem('currentUser')).user.uid
     };
 
     try {

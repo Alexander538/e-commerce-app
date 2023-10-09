@@ -7,7 +7,7 @@ import Layout from '../Components/Layout';
 import fireDB from '../fireConfig';
 import { addToCart, getTotals } from '../redux/cartSlice';
 
-function ProductInfo() {
+function ProductInfo () {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function ProductInfo() {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-  async function getData() {
+  async function getData () {
     try {
       setLoading(true);
       const productTemp = await getDoc(

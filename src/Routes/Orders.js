@@ -3,7 +3,7 @@ import Layout from '../Components/Layout';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import fireDB from '../fireConfig';
 
-function Orders() {
+function Orders () {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const userid = JSON.parse(localStorage.getItem('currentUser')).user.uid
@@ -12,7 +12,7 @@ function Orders() {
     getData();
   }, []);
 
-  async function getData() {
+  async function getData () {
     try {
       setLoading(true);
       const result = await getDocs(collection(fireDB, 'orders'));
@@ -32,8 +32,8 @@ function Orders() {
   return (
     <Layout loading={loading}>
         <div className='p-2'>
-        {orders.filter(obj=>obj.userid == userid).map((order) => {
-        return (
+        {orders.filter(obj => obj.userid == userid).map((order) => {
+          return (
           <table className='table mt-3 order'>
             <thead>
               <tr>
@@ -59,8 +59,8 @@ function Orders() {
               })}
             </tbody>
           </table>
-        );
-      })}
+          );
+        })}
         </div>
     </Layout>
   );

@@ -7,13 +7,13 @@ import {
   getDocs,
   setDoc,
   doc,
-  deleteDoc,
+  deleteDoc
 } from 'firebase/firestore';
 import fireDB from '../fireConfig';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
-function Admin() {
+function Admin () {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +21,7 @@ function Admin() {
     name: '',
     price: 0,
     imageURL: '',
-    category: '',
+    category: ''
   });
 
   const [show, setShow] = useState(false);
@@ -34,7 +34,7 @@ function Admin() {
     getData();
   }, []);
 
-  async function getData() {
+  async function getData () {
     try {
       setLoading(true);
       const products = await getDocs(collection(fireDB, 'products'));
@@ -42,7 +42,7 @@ function Admin() {
       products.forEach((doc) => {
         const obj = {
           id: doc.id,
-          ...doc.data(),
+          ...doc.data()
         };
 
         productsArray.push(obj);
@@ -60,7 +60,7 @@ function Admin() {
     getOrdersData();
   }, []);
 
-  async function getOrdersData() {
+  async function getOrdersData () {
     try {
       setLoading(true);
       const result = await getDocs(collection(fireDB, 'orders'));
@@ -227,11 +227,13 @@ function Admin() {
             </Modal.Body>
             <Modal.Footer>
               <button onClick={handleClose}>Close</button>
-              {add ? (
+              {add
+                ? (
                 <button onClick={addProduct}>SAVE</button>
-              ) : (
+                  )
+                : (
                 <button onClick={updateProduct}>SAVE</button>
-              )}
+                  )}
             </Modal.Footer>
           </Modal>
         </Tab>

@@ -4,12 +4,9 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './redux/store'
-import cartReducer, {getTotals} from './redux/cartSlice'
-
-
+import cartReducer, { getTotals } from './redux/cartSlice'
 
 store.dispatch(getTotals());
-
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,4 +14,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-

@@ -1,18 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {FaBars, FaCartPlus, FaUser} from 'react-icons/fa'
+import { FaBars, FaCartPlus, FaUser } from 'react-icons/fa'
 import { useSelector } from 'react-redux';
 
-function Header() {
+function Header () {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   // const { cartItems } = useSelector(state=>state.cartReducer)
   const { user } = JSON.parse(localStorage.getItem('currentUser'))
 
-  const logout =()=> {
-
+  const logout = () => {
     localStorage.removeItem('currentUser')
     window.location.reload();
-
   }
 
   return (
@@ -20,7 +18,7 @@ function Header() {
       <nav className='navbar navbar-expand-lg navbar-light bg-light'>
         <div className='container-fluid'>
           <Link className='navbar-brand' to='/'>
-            cool cats wear cool hats
+            Sexy Beach Swim
           </Link>
           <button
             className='navbar-toggler'
@@ -37,7 +35,7 @@ function Header() {
             <ul className='navbar-nav ms-auto'>
               <li className='nav-item'>
                 <Link className='nav-link active' aria-current='page' to='/'>
-                  <FaUser/>  {user.email.substring(0 , user.email.length-10)}
+                  <FaUser/>  {user.email.substring(0, user.email.length - 10)}
                 </Link>
               </li>
               <li className='nav-item'>

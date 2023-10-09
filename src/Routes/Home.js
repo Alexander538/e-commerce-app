@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 import { addToCart, getTotals } from '../redux/cartSlice';
 
-function Home() {
+function Home () {
   const [products, setProducts] = useState([]);
   // const { cartItems } = useSelector((state) => state.cartReducer);
   const cart = useSelector((state) => state.cart);
@@ -27,7 +27,7 @@ function Home() {
     dispatch(getTotals());
   }, [cart, dispatch]);
 
-  async function getData() {
+  async function getData () {
     try {
       setLoading(true);
       const products = await getDocs(collection(fireDB, 'products'));
@@ -35,7 +35,7 @@ function Home() {
       products.forEach((doc) => {
         const obj = {
           id: doc.id,
-          ...doc.data(),
+          ...doc.data()
         };
 
         productsArray.push(obj);
