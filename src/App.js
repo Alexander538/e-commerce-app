@@ -13,7 +13,7 @@ import './stylesheets/products.css';
 import './stylesheets/authentication.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+function App () {
   return (
     <div className='App'>
       <ToastContainer />

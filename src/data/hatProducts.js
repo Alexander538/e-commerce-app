@@ -5,7 +5,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -13,7 +13,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -21,7 +21,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -29,7 +29,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -37,7 +37,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -45,7 +45,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -53,7 +53,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -61,7 +61,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -69,7 +69,7 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
   },
   {
     price: 20,
@@ -77,6 +77,6 @@ export const hatProducts = [
     name: 'hat',
     category: 'winter',
     imageURL:
-      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg',
-  },
+      'https://image.shutterstock.com/image-photo/purple-hat-isolate-on-white-260nw-63133237.jpg'
+  }
 ];

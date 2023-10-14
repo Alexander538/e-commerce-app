@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Loader from '../Components/Loader';
 import { toast } from 'react-toastify';
 
-function RegisterPage() {
+function RegisterPage () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

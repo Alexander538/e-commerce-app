@@ -6,7 +6,7 @@ import Loader from '../Components/Loader';
 
 const auth = getAuth();
 
-function LoginPage() {
+function LoginPage () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ function LoginPage() {
       localStorage.setItem('currentUser', JSON.stringify(result));
       setLoading(false);
       toast.success('Login Successful!');
-      window.location.href='/'
+      window.location.href = '/'
     } catch (error) {
       toast.error('Login Failed');
       setLoading(false);
