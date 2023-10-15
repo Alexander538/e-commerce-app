@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../Components/Layout';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import fireDB from '../fireConfig';
 
 function Orders () {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
-  const userid = JSON.parse(localStorage.getItem('currentUser')).user.uid
+  const [hasOrders, setHasOrders] = useState(false);
+  const userid = JSON.parse(localStorage.getItem('currentUser')).user.uid;
+  console.log('currUSer: ', userid)
+  const hasCartItems = (order) => order.cartItems.length > 0;
 
   useEffect(() => {
     getData();
@@ -19,22 +22,29 @@ function Orders () {
       const ordersArray = [];
       result.forEach((doc) => {
         ordersArray.push(doc.data());
-        setLoading(false);
       });
-      console.log(ordersArray);
-      setOrders(ordersArray);
+      setLoading(false);
+      console.log(ordersArray.filter(obj => String(obj.userid) === userid));
+      const usersOrders = ordersArray.filter(obj => String(obj.userid) === userid);
+      setHasOrders(usersOrders.length > 0);
+      console.log('user has orders? ', usersOrders.length > 0);
+      setOrders(usersOrders);
     } catch (error) {
-      console.log(error);
+      console.log('errors: ', error);
       setLoading(false);
     }
+  }
+
+  if (!hasOrders) {
+    return (<div><p>No Orders.</p> </div>)
   }
 
   return (
     <Layout loading={loading}>
         <div className='p-2'>
-        {orders.filter(obj => obj.userid == userid).map((order) => {
+        {orders.map((order) => {
           return (
-          <table className='table mt-3 order'>
+          <table className='table mt-3 order' key={order.userid}>
             <thead>
               <tr>
                 <th>Image</th>
@@ -44,19 +54,19 @@ function Orders () {
               </tr>
             </thead>
             <tbody>
-              {order.cartItems?.map((item) => {
-                return (
-                  <tr>
+              { hasCartItems()
+                ? orders.cartItems.map((item) =>
+                  (<tr key={item.name}>
                     <td>
                       <img src={item.imageURL} height='80' width='80' />
                     </td>
-
                     <td>{item.name}</td>
                     <td>{item.cartQuantity}</td>
                     <td>$ {item.price}</td>
-                  </tr>
-                );
-              })}
+                  </tr>)
+                )
+                : <span>Cart is empty.</span>
+            }
             </tbody>
           </table>
           );

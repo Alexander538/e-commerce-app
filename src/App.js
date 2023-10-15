@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import React from 'react';
 import Home from './Routes/Home';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './Routes/LoginPage';
